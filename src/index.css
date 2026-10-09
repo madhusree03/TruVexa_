@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* 
+  VERTICAL SCROLLBAR BESIDE THE DASHBOARD & PAGE
+  User requirement: "vertical scrolling bar beside the dash board should be in the colour thewill complement the web page"
+  Complementary theme colors: Deep cyber background (#070b14, #0b1120) with cyan-to-purple/rose complementary gradient
+*/
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #070b14;
+  border-left: 1px solid rgba(15, 23, 42, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #06b6d4 0%, #3b82f6 50%, #a855f7 100%);
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 1px rgba(34, 211, 238, 0.5);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #22d3ee 0%, #60a5fa 50%, #c084fc 100%);
+  border-color: rgba(34, 211, 238, 0.7);
+  box-shadow: 0 0 2px rgba(34, 211, 238, 0.8);
+}
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #38bdf8 0%, #a855f7 50%, #f43f5e 100%);
+  border-color: rgba(244, 63, 94, 0.8);
+}
+
+/* Firefox standard scrollbar properties */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #06b6d4 #070b14;
+}
+
+/* Specific styling for internal sidebar scrollbar if needed */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(7, 11, 20, 0.6);
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(6, 182, 212, 0.8) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(168, 85, 247, 0.8) 100%);
+  border-radius: 9999px;
+}
+
+/* 
+  SMOOTH HOVER MOVEMENT AND CRISP LINE GLOW ON INTERACTIVE ELEMENTS
+  User requirement: "everything should glow only a little bit like a piece of line and dont make the matter blur"
+*/
+button, a, input, [role="button"], .interactive-float, .card-hover-glow, tr, .hover-move {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, background-color 0.22s ease;
+  will-change: transform;
+}
+
+/* Slight movement on hover for all buttons and clickables - line glow only */
+button:hover, [role="button"]:hover, .hover-move:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.6), 0 0 2px rgba(34, 211, 238, 0.3);
+}
+
+/* Slight movement on hover for interactive cards - hairline glow like a piece of line */
+.interactive-float:hover, .card-hover-glow:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.5) !important;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.4), 0 0 2px rgba(34, 211, 238, 0.2) !important;
+}
+
+/* COMPLEMENTARY COLOUR LINE GLOW ON CLICK */
+/* When user clicks on something, crisp complementary line glow (cyan complements with magenta/coral/rose) */
+button:active, [role="button"]:active, .glow-complement-click:active {
+  transform: translateY(-1px) scale(0.99);
+  border-color: rgba(244, 63, 94, 0.8) !important;
+  box-shadow: 0 0 0 1.5px rgba(244, 63, 94, 0.8), 0 0 3px rgba(244, 63, 94, 0.4) !important;
+}
+
+/* High-intensity crisp line glow for primary action buttons */
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.8), 0 0 3px rgba(34, 211, 238, 0.4) !important;
+}
+
+/* Input Cursor Hover & Focus with clean line glow */
+input:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.4);
+}
+
+input:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1.5px rgba(34, 211, 238, 0.7), 0 0 2px rgba(34, 211, 238, 0.3) !important;
+}
+
+/* 
+  SECURITY DASHBOARD CONTINUOUS TELEMETRY MOVEMENT ANIMATION
+  User requirement: "dash board should move" & "security board and education centre also should slightly move"
+*/
+@keyframes dashboard-ambient-drift {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(0.08deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-2px) rotate(-0.08deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes board-gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes education-ambient-pulse {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.002);
+  }
+}
+
+.animate-dashboard-drift {
+  animation: dashboard-ambient-drift 7s ease-in-out infinite;
+}
+
+.animate-board-float {
+  animation: board-gentle-float 5s ease-in-out infinite;
+}
+
+.animate-education-drift {
+  animation: education-ambient-pulse 6s ease-in-out infinite;
+}
+
+/* Realistic scanning laser bar */
+@keyframes cyber-laser {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(220px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+}
+
+.animate-laser {
+  animation: cyber-laser 2.2s infinite ease-in-out;
+}
+
+/* Realistic radar sweep */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar {
+  animation: radar-sweep 4s linear infinite;
+}
+
+/* Subtle hairline pulse for high-attention safety indicator */
+@keyframes complement-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 1.5px rgba(236, 72, 153, 0.7);
+  }
+}
+
+.animate-complement-pulse {
+  animation: complement-pulse 3s ease-in-out infinite;
+}
+
+/* Flowing line stopped per user request: "stop the flowing line" */
+.animate-line-traverse {
+  display: none;
+  animation: none;
+}
+
+/* 
+  TAB CURSOR HOVER GLOW - CRISP PIECE OF LINE (EXCLUDING GREEN)
+  User requirement: "everything should glow only a little bit like a piece of line and dont make the matter blur"
+*/
+aside nav button.sidebar-tab-button:hover,
+.sidebar-tab-button:hover {
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.8), 0 0 2px rgba(168, 85, 247, 0.4) !important;
+  border-color: rgba(34, 211, 238, 0.8) !important;
+}
+
+/* Tab title text stays crisp and sharp - zero blur on matter */
+aside nav button.sidebar-tab-button:hover span[class*="text-xs font-bold"],
+.sidebar-tab-button:hover span[class*="text-xs font-bold"] {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* 
+  TRUVEXA TITLE - NO GLOW
+  User requirement: "dont make the title glow"
+*/
+.truvexa-title-clean,
+.truvexa-title-clean *,
+.truvexa-title-clean:hover,
+.truvexa-title-clean:hover * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  drop-shadow: none !important;
+}
+
+/* 
+  METER VIEW MODE - NO GLOW
+  User requirement: "remove the glow for meter view mode"
+*/
+.meter-view-card,
+.meter-view-card *,
+.meter-view-card:hover,
+.meter-view-card:hover * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  drop-shadow: none !important;
+}
+
+/* 
+  NO BLUR ON THE MATTER (TEXT / CONTENT / HEADINGS / NUMBERS)
+  User requirement: "dont make the matter blur"
+*/
+h1, h2, h3, h4, h5, h6, p, span, label, td, th, div, input, button {
+  text-shadow: none !important;
+}
+

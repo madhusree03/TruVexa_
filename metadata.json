@@ -1,0 +1,6 @@
+{
+  "name": "PhishGuard",
+  "description": "AI-Powered Phishing & Malicious Link Detection Platform with heuristic analysis, real-time threat intelligence, and Gemini AI explanations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
